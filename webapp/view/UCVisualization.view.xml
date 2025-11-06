@@ -45,11 +45,12 @@
                     <HBox class="" justifyContent="Center" width="100%">
                         <Button id="ucVisualizationInicioButton" text="Início" type="Emphasized" press="onInicioPress" class="sapUiTinyMarginEnd" icon="sap-icon://home" tooltip="Voltar ao menu principal" width="140px" />
                         <Button id="ucVisualizationMontarUCButton" text="Montar UC" type="Emphasized" press="onMontarUCPress" class="sapUiTinyMarginEnd" icon="sap-icon://add" tooltip="Montar nova UC" width="140px" />
-                        <Button id="ucVisualizationMontarUCLxCButton" text="Montar UC LxC" type="Emphasized" press="onMontarUCLxCPress" class="" icon="sap-icon://add" tooltip="Montar nova UC LxC" width="140px" />
+                        
                     </HBox>
                     
                     <!-- Second Row: Finalizar Recebimento -->
                     <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="ucVisualizationMontarUCLxCButton" text="Montar UC LxC" type="Emphasized" press="onMontarUCLxCPress" class="" icon="sap-icon://add" tooltip="Montar nova UC LxC" width="140px" />
                         <Button id="ucVisualizationFinalizarRecebimentoButton" text="Finalizar Recebimento" type="Emphasized" press="onFinalizarRecebimentoPress" class="" icon="sap-icon://accept" tooltip="Finalizar todo o recebimento" width="140px" />
                     </HBox>
                 </VBox>
