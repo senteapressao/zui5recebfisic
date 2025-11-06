@@ -1,0 +1,50 @@
+<mvc:View controllerName="zui5recebfisic.controller.FinalizarRecebimentoNF"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="Finalizar recebimento NF" showNavButton="true" navButtonPress="onNavBack" class="finalizarRecebimentoNFPage">
+        <content>
+            <VBox id="mainContent" class="finalizarRecebimentoNFContainer" alignItems="Center" justifyContent="Center">
+                <Title text="Finalizar recebimento NF" 
+                       level="H2" 
+                       class="finalizarRecebimentoNFTitle" />
+                
+                <VBox alignItems="Center" class="inputContainer">
+                    <Label text="Nota fiscal" class="inputLabel" />
+                    <Input id="nfDisplay" 
+                           value="{finalizarRecebimento>/nf}"
+                           editable="false"
+                           class="nfDisplay mobileInput"
+                           tooltip="Número da Nota Fiscal" />
+                </VBox>
+                
+                <VBox alignItems="Center" class="identificadoresContainer">
+                    <Label text="Identificador" class="inputLabel" />
+                    <List id="identificadoresList" 
+                          items="{finalizarRecebimento>/identificadores}"
+                          class="identificadoresList">
+                        <StandardListItem title="{.}" 
+                                          class="identificadorItem" />
+                    </List>
+                </VBox>
+                
+                <HBox alignItems="Center" class="buttonContainer">
+                    <Button id="voltarButton" 
+                            text="Voltar" 
+                            type="Emphasized" 
+                            press="onVoltarPress"
+                            class="voltarButton primaryButton mobileActionButton"
+                            tooltip="Voltar para tela anterior"
+                            width="140px" />
+                    
+                    <Button id="concluirButton" 
+                            text="Concluir" 
+                            type="Emphasized" 
+                            press="onConcluirPress"
+                            class="concluirButton primaryButton mobileActionButton"
+                            tooltip="Finalizar recebimento com validações"
+                            width="140px" />
+                </HBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,101 @@
+<mvc:View controllerName="zui5recebfisic.controller.AssembleUC"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="assembleUCPage" title="Montar UC" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <VBox class="sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+                    <!-- NF Field -->
+                    <HBox alignItems="Center">
+                        <Label text="Nota fiscal:" width="120px" />
+                        <Input id="assembleUCNfDisplay" editable="false" tooltip="Número da Nota Fiscal (somente leitura)" width="100%" />
+                    </HBox>
+
+                    <!-- Identificador Field -->
+                    <HBox alignItems="Center">
+                        <Label text="Identificador:" width="120px" />
+                        <Input id="assembleUCIdentificadorDisplay" editable="false" tooltip="Identificador do container (somente leitura)" width="100%" />
+                    </HBox>
+
+                    <!-- UC Field -->
+                    <HBox alignItems="Center">
+                        <Label text="UC:" width="120px" />
+                        <Input id="assembleUCUcDisplay" editable="false" tooltip="Número da UC (somente leitura)" width="100%" />
+                    </HBox>
+                    <HBox alignItems="Center">
+                        <Label text="Material:" width="120px" />
+                        <Input id="assembleUCMaterialInput" placeholder="Escaneie ou digite o código de barras" type="Text" submit="onMaterialInputSubmit" tooltip="Código de barras do material"  width="100%" />
+                    </HBox>
+
+
+                    <HBox alignItems="Center" visible="false" id="assembleUCQuantidadeContainer">
+                        <Label text="Quantidade:" width="120px" />
+                        <Input id="assembleUCQuantidadeInput" type="Number" placeholder="Digite a quantidade" tooltip="Quantidade do material" width="100%" submit="onQuantidadeInputSubmit" />
+                    </HBox>
+
+                    <HBox alignItems="Center" visible="false" id="assembleUCMaterialSKUContainer">
+                        <Label text="Material SKU:" width="120px" />
+                        <Input id="assembleUCMaterialSKUInput" editable="false" placeholder="SKU do material (preenchido automaticamente)" tooltip="Código SKU do material retornado pelo sistema SAP" width="100%" />
+                    </HBox>
+                </VBox>
+                <!-- Expiration Date Section -->
+                <VBox id="assembleUCValidadeContainer" visible="false" class="sapUiMediumMarginBottom">
+                    <HBox alignItems="Center">
+                        <Label text="Validade:" width="120px" />
+                        <HBox wrap="Wrap" width="100%">
+                            <Select id="assembleUCMesSelect" width="140px" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" tooltip="Selecione o mês de validade">
+                                <core:Item key="01" text="Janeiro" />
+                                <core:Item key="02" text="Fevereiro" />
+                                <core:Item key="03" text="Março" />
+                                <core:Item key="04" text="Abril" />
+                                <core:Item key="05" text="Maio" />
+                                <core:Item key="06" text="Junho" />
+                                <core:Item key="07" text="Julho" />
+                                <core:Item key="08" text="Agosto" />
+                                <core:Item key="09" text="Setembro" />
+                                <core:Item key="10" text="Outubro" />
+                                <core:Item key="11" text="Novembro" />
+                                <core:Item key="12" text="Dezembro" />
+                            </Select>
+                            <Select id="assembleUCAnoSelect" width="120px" class="sapUiTinyMarginBottom" tooltip="Selecione o ano de validade">
+                                <!-- Years will be populated dynamically -->
+                            </Select>
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Add Item Button -->
+                <Button id="assembleUCAdicionarItemButton" text="Adicionar Item" type="Emphasized" press="onAdicionarItemPress" class="mobileActionButton" icon="sap-icon://add" tooltip="Adicionar item à UC" />
+
+                <!-- Scanned Items List -->
+                <VBox id="assembleUCScannedItemsContainer" class="sapUiMediumMarginTop">
+                    <Label text="{= 'Itens Escaneados: ' + ${/scannedItemsCount}}" class="sapUiMediumMarginBottom" />
+                    <List id="assembleUCScannedItemsList" items="{/scannedItems}" noDataText="Nenhum item escaneado ainda" class="mobileList sapUiMediumMarginBottom" tooltip="Lista de itens já escaneados">
+                        <StandardListItem title="{= ${material} ? ${material} + ' - Qtd: ' + (${quantidade} ? Math.floor(${quantidade}) : '0') : 'Material não definido'}" description="{= ${dataValidade} ? 'Validade: ' + ${dataValidade} : 'Sem validade'}" type="Active" press="onItemPress" tooltip="Toque para editar ou remover item">
+                            <customData>
+                                <core:CustomData key="itemIndex" value="{itemIndex}" />
+                            </customData>
+                        </StandardListItem>
+                    </List>
+                </VBox>
+
+                <!-- Action Buttons -->
+                <VBox class="assembleUCButtonContainer sapUiLargeMarginTop" alignItems="Center">
+                    <!-- First Row: Ocorrência, Início, and Concluir UC -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                       <Button id="assembleUCConcluirUCButton" text="Concluir UC" type="Emphasized" press="onConcluirUCPress" class="sapUiTinyMarginEnd" icon="sap-icon://complete" tooltip="Concluir montagem da UC" width="140px" />
+                        <Button id="assembleUCFinalizarRecebimentoButton" text="Finalizar Recebimento" type="Emphasized" press="onFinalizarRecebimentoPress" class="sapUiTinyMarginEnd" icon="sap-icon://accept" width="140px" tooltip="Finalizar todo o recebimento" visible="false"/>
+                    </HBox>
+
+                    <!-- Second Row: Finalizar Recebimento -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="assembleUCOcorrenciaButton" text="Ocorrência" type="Emphasized" press="onOcorrenciaPress" class="sapUiTinyMarginEnd" icon="sap-icon://alert" tooltip="Registrar ocorrência" width="140px" />
+                        <Button id="assembleUCInicioButton" text="Início" type="Emphasized" press="onInicioPress" class="sapUiTinyMarginEnd" icon="sap-icon://home" tooltip="Voltar ao menu principal" width="140px" />
+                        
+                    </HBox>
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

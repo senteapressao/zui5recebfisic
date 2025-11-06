@@ -1,0 +1,37 @@
+<mvc:View controllerName="zui5recebfisic.controller.MainMenu"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="Recebimento ELGIN" showNavButton="false" class="mainMenuPage">
+        <content>
+            <VBox id="mainContent" class="mainMenuContainer" alignItems="Center" justifyContent="Center">
+                <Title text="Recebimento Físico ELGIN" 
+                       level="H2" 
+                       class="mainMenuTitle" />
+                
+                <VBox alignItems="Center" class="buttonContainer">
+                    <Button id="recebimentoButton" 
+                            text="Recebimento" 
+                            type="Emphasized" 
+                            press="onRecebimentoPress"
+                            class="mainMenuButton primaryButton mobileActionButton uniformButton"
+                            tooltip="Iniciar processo de recebimento físico" />
+                    
+                    <Button id="armazenarUCButton" 
+                            text="Armazenar UC" 
+                            type="Emphasized" 
+                            press="onArmazenarUCPress"
+                            class="mainMenuButton primaryButton mobileActionButton uniformButton"
+                            tooltip="Gerenciar armazenamento de UCs" />
+                    
+                    <Button id="concluirNFButton" 
+                            text="Concluir NF" 
+                            type="Emphasized" 
+                            press="onConcluirNFPress"
+                            class="mainMenuButton primaryButton mobileActionButton uniformButton"
+                            tooltip="Finalizar recebimento de Nota Fiscal" />
+                    
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

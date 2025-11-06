@@ -1,0 +1,83 @@
+<mvc:View controllerName="zui5recebfisic.controller.CreateUC"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="createUCPage" title="Criar UC" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Read-only Information Section -->
+                <VBox class="sapUiMediumMarginBottom">
+                    <Label text="Nota fiscal:" class="sapUiSmallMarginBottom" />
+                    <Input id="nfDisplay" 
+                           value="{receiptContext>/nf}"
+                           editable="false"
+                           class="sapUiMediumMarginBottom"
+                           tooltip="Número da Nota Fiscal (somente leitura)" />
+                    
+                    <Label text="Identificador:" class="sapUiSmallMarginBottom" />
+                    <Input id="identificadorDisplay" 
+                           value="{receiptContext>/identificador}"
+                           editable="false"
+                           class="sapUiMediumMarginBottom"
+                           tooltip="Identificador do container (somente leitura)" />
+                </VBox>
+                
+                <!-- Material Input Section -->
+                <VBox class="sapUiMediumMarginBottom">
+                    <Label text="Unitizador:" class="sapUiSmallMarginBottom" />
+                    <ComboBox id="materialEmbalagemCombo" 
+                              placeholder="Selecione o material de embalagem"
+                              class="sapUiMediumMarginBottom"
+                              selectionChange="onMaterialSelectionChange"
+                              tooltip="Selecione o material de embalagem"
+                              items="{matEmbModel>/MatEmbSet}">
+                        <core:Item key="{matEmbModel>Matnr}" text="{matEmbModel>Descr}" />
+                    </ComboBox>
+                    
+                    <!-- Loading indicator for material validation -->
+                    <HBox visible="{receiptContext>/isValidatingMaterial}" 
+                          alignItems="Center" 
+                          class="sapUiSmallMarginBottom">
+                        <BusyIndicator size="1rem" class="sapUiTinyMarginEnd" />
+                        <Text text="Validando material..." class="sapUiContentPadding" />
+                    </HBox>
+                </VBox>
+                
+                <!-- Action Buttons -->
+                <VBox class="buttonContainer sapUiLargeMarginTop" alignItems="Center">
+                        <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="inicioButton" 
+                                text="Início" 
+                                type="Emphasized" 
+                                press="onInicioPress"
+                                enabled="{= !${receiptContext>/isValidatingMaterial}}"
+                                class="sapUiTinyMarginEnd"
+                                icon="sap-icon://home"
+                                tooltip="Voltar ao menu principal"
+                                width="140px" />
+                        
+                        <Button id="montarUCButton" 
+                                text="{= ${receiptContext>/isValidatingMaterial} ? 'Validando...' : 'Montar UC'}" 
+                                type="Emphasized" 
+                                press="onMontarUCPress"
+                                enabled="{= !${receiptContext>/isValidatingMaterial}}"
+                                class="sapUiTinyMarginEnd"
+                                icon="{= ${receiptContext>/isValidatingMaterial} ? 'sap-icon://busy' : 'sap-icon://add'}"
+                                tooltip="Criar UC com material de embalagem"
+                                width="140px" />
+                        
+                        <Button id="montarUCLxCButton" 
+                                text="Montar UC LxC" 
+                                type="Emphasized" 
+                                press="onMontarUCLxCPress"
+                                enabled="{= !${receiptContext>/isValidatingMaterial}}"
+                                class=""
+                                icon="sap-icon://add"
+                                tooltip="Criar UC LxC com material de embalagem"
+                                width="140px" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,179 @@
+<mvc:View controllerName="zui5recebfisic.controller.FinalizationCheck"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="finalizationPage" title="Finalização do Recebimento" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Receipt Information Display - Compact Layout -->
+                <Panel headerText="Dados do Recebimento" 
+                       class="sapUiSmallMarginBottom"
+                       expandable="false">
+                    <content>
+                        <HBox justifyContent="SpaceBetween" 
+                              alignItems="Center" 
+                              class="sapUiSmallMargin">
+                            <VBox class="sapUiTinyMarginEnd" width="48%">
+                                <Label text="Nota Fiscal:" class="sapUiTinyMarginBottom" />
+                                <Input id="finalizationNfDisplay" 
+                                       editable="false"
+                                       class="sapUiTinyMarginBottom"
+                                       tooltip="Número da Nota Fiscal (somente leitura)" />
+                            </VBox>
+                            <VBox class="sapUiTinyMarginStart" width="48%">
+                                <Label text="Identificador:" class="sapUiTinyMarginBottom" />
+                                <Input id="finalizationIdentificadorDisplay" 
+                                       editable="false"
+                                       class="sapUiTinyMarginBottom"
+                                       tooltip="Identificador do container (somente leitura)" />
+                            </VBox>
+                        </HBox>
+                    </content>
+                </Panel>
+                
+                <!-- Summary Panel -->
+                <Panel id="summaryPanel" 
+                       headerText="Resumo do Recebimento" 
+                       class="sapUiSmallMarginBottom"
+                       expandable="false">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <HBox justifyContent="SpaceBetween" 
+                                  alignItems="Center" 
+                                  class="sapUiTinyMarginBottom">
+                                <Label text="Total de itens:" />
+                                <ObjectNumber id="totalItemsText" 
+                                            number="{finalizationModel>/summary/totalItems}" 
+                                            emphasized="true"
+                                            state="Information" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" 
+                                  alignItems="Center" 
+                                  class="sapUiTinyMarginBottom">
+                                <Label text="Total de UCs:" />
+                                <ObjectNumber id="totalUCsText" 
+                                            number="{finalizationModel>/summary/totalUCs}" 
+                                            emphasized="true"
+                                            state="Success" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" 
+                                  alignItems="Center" 
+                                  class="sapUiTinyMarginBottom">
+                                <Label text="Total de Volumes:" />
+                                <ObjectNumber id="totalVolumesText" 
+                                            number="{finalizationModel>/summary/totalVolume}" 
+                                            emphasized="true"
+                                            state="Success" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" 
+                                  alignItems="Center">
+                                <Label text="Quantidade total:" />
+                                <ObjectNumber id="totalQuantityText" 
+                                            number="{finalizationModel>/summary/totalQuantity}" 
+                                            emphasized="true"
+                                            state="None" />
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <!-- Action Buttons -->
+                <VBox class="buttonContainer sapUiSmallMarginBottom" alignItems="Center">
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="finalizationVoltarButton" 
+                                text="Voltar" 
+                                type="Emphasized" 
+                                press="onVoltarPress"
+                                class="sapUiTinyMarginEnd"
+                                icon="sap-icon://nav-back"
+                                tooltip="Voltar para montagem de UC"
+                                width="140px" />
+                        
+                        <Button id="finalizationConcluirButton" 
+                                text="Concluir Recebimento" 
+                                type="Emphasized" 
+                                press="onConcluirPress"
+                                class=""
+                                icon="sap-icon://complete"
+                                tooltip="Finalizar todo o processo de recebimento"
+                                width="140px" />
+                    </HBox>
+                </VBox>
+                
+                <!-- Progress Indicator -->
+                <VBox id="progressContainer" 
+                      visible="false" 
+                      class="sapUiSmallMarginBottom">
+                    <Label text="Processando transferência..." class="sapUiTinyMarginBottom" />
+                    <ProgressIndicator id="transferProgress" 
+                                     percentValue="0" 
+                                     displayValue="Iniciando..."
+                                     state="Information"
+                                     class="sapUiSmallMarginBottom" />
+                </VBox>
+                
+                <!-- Scanned Items List - Mobile Optimized -->
+                <Panel headerText="Itens Escaneados" 
+                       class="sapUiTinyMarginBottom"
+                       expandable="false">
+                    <content>
+                        <VBox id="scannedItemsContainer" 
+                              items="{finalizationModel>/scannedItems}"
+                              class="mobileItemsContainer">
+                            <VBox class="mobileItemCard sapUiSmallMarginBottom">
+                                <!-- Material Information -->
+                                <HBox justifyContent="SpaceBetween" 
+                                      alignItems="Start" 
+                                      class="sapUiSmallMargin">
+                                    <VBox width="70%">
+                                        <Label text="Material:" 
+                                               class="mobileLabel sapUiTinyMarginBottom" />
+                                        <Text text="{finalizationModel>materialDescription}" 
+                                              class="mobileText mobileMaterialText" 
+                                              wrapping="true" />
+                                    </VBox>
+                                    <VBox width="25%" alignItems="End">
+                                        <Label text="UC:" 
+                                               class="mobileLabel sapUiTinyMarginBottom" />
+                                        <Text text="{finalizationModel>uc}" 
+                                              class="mobileText mobileUcText" />
+                                    </VBox>
+                                </HBox>
+                                
+                                <!-- Quantities Information -->
+                                <HBox justifyContent="SpaceBetween" 
+                                      alignItems="Center" 
+                                      class="sapUiSmallMargin">
+                                    <VBox width="48%">
+                                        <Label text="Volumes:" 
+                                               class="mobileLabel sapUiTinyMarginBottom" />
+                                        <Text text="{finalizationModel>quantidadeVolumes}" 
+                                              class="mobileText mobileQuantityText" />
+                                    </VBox>
+                                    <VBox width="48%">
+                                        <Label text="Quantidade:" 
+                                               class="mobileLabel sapUiTinyMarginBottom" />
+                                        <Text text="{finalizationModel>quantidadeTotal}" 
+                                              class="mobileText mobileQuantityText" />
+                                    </VBox>
+                                </HBox>
+                                
+                                <!-- Validity Date (if available) -->
+                                <HBox visible="{= ${finalizationModel>dataValidade} ? true : false}" 
+                                      class="sapUiSmallMargin">
+                                    <Label text="Validade:" 
+                                           class="mobileLabel sapUiTinyMarginEnd" />
+                                    <Text text="{finalizationModel>dataValidade}" 
+                                          class="mobileText mobileValidityText" />
+                                </HBox>
+                                
+                                <!-- Separator line -->
+                                <HBox class="mobileSeparator" />
+                            </VBox>
+                        </VBox>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

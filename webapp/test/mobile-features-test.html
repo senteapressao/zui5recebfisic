@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mobile Features Test - Physical Receipt System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background-color: #0070f2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            min-height: 44px;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        .mobile-button {
+            width: 100%;
+            margin-bottom: 10px;
+            min-height: 48px;
+            font-size: 16px;
+        }
+        .barcode-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #0070f2;
+            transition: width 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            body {
+                margin: 10px;
+            }
+            .test-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Mobile Features Test</h1>
+    <p>This page tests the mobile-specific features implemented for the Physical Receipt System.</p>
+
+    <div class="test-section">
+        <h2>Device Detection</h2>
+        <div id="device-info"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Touch-Friendly Interface</h2>
+        <button class="mobile-button" onclick="testHapticFeedback()">Test Haptic Feedback</button>
+        <button class="mobile-button" onclick="testVisualFeedback(this)">Test Visual Feedback</button>
+        <div id="touch-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Barcode Scanner Simulation</h2>
+        <input type="text" class="barcode-input" id="barcodeInput" placeholder="Scan or enter barcode (13-14 digits)" maxlength="14">
+        <button onclick="testBarcodeValidation()">Validate Barcode</button>
+        <button onclick="simulateCameraScan()">Simulate Camera Scan</button>
+        <div id="barcode-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Progress Indicators</h2>
+        <button onclick="testProgressIndicator()">Test Progress Indicator</button>
+        <div class="progress-bar" id="progressBar" style="display: none;">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+        <div id="progress-text"></div>
+        <div id="progress-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Responsive Design</h2>
+        <p>Resize your browser window or rotate your device to test responsive behavior.</p>
+        <div id="responsive-info"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Accessibility Features</h2>
+        <button onclick="testAccessibility()">Test Accessibility Features</button>
+        <div id="accessibility-results"></div>
+    </div>
+
+    <script>
+        // Device Detection Test
+        function updateDeviceInfo() {
+            const deviceInfo = document.getElementById('device-info');
+            const isMobile = window.innerWidth <= 768;
+            const isTouch = 'ontouchstart' in window;
+            const hasCamera = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+            const hasVibration = !!navigator.vibrate;
+            
+            deviceInfo.innerHTML = `
+                <div class="test-result info">
+                    <strong>Device Information:</strong><br>
+                    Screen Size: ${window.innerWidth} x ${window.innerHeight}<br>
+                    Mobile Device: ${isMobile ? 'Yes' : 'No'}<br>
+                    Touch Support: ${isTouch ? 'Yes' : 'No'}<br>
+                    Camera Access: ${hasCamera ? 'Available' : 'Not Available'}<br>
+                    Vibration Support: ${hasVibration ? 'Yes' : 'No'}<br>
+                    User Agent: ${navigator.userAgent}
+                </div>
+            `;
+        }
+
+        // Haptic Feedback Test
+        function testHapticFeedback() {
+            const results = document.getElementById('touch-results');
+            
+            if (navigator.vibrate) {
+                navigator.vibrate(100);
+                results.innerHTML = '<div class="test-result success">Haptic feedback triggered successfully!</div>';
+            } else {
+                results.innerHTML = '<div class="test-result error">Haptic feedback not supported on this device.</div>';
+            }
+        }
+
+        // Visual Feedback Test
+        function testVisualFeedback(button) {
+            button.style.transform = 'scale(0.95)';
+            button.style.transition = 'transform 0.1s ease';
+            
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 100);
+            
+            const results = document.getElementById('touch-results');
+            results.innerHTML = '<div class="test-result success">Visual feedback animation completed!</div>';
+        }
+
+        // Barcode Validation Test
+        function testBarcodeValidation() {
+            const input = document.getElementById('barcodeInput');
+            const results = document.getElementById('barcode-results');
+            const barcode = input.value.trim();
+            
+            if (!barcode) {
+                results.innerHTML = '<div class="test-result error">Please enter a barcode to validate.</div>';
+                return;
+            }
+            
+            if (barcode.length !== 13 && barcode.length !== 14) {
+                results.innerHTML = '<div class="test-result error">Barcode must be 13 or 14 characters long.</div>';
+                return;
+            }
+            
+            if (!/^\d+$/.test(barcode)) {
+                results.innerHTML = '<div class="test-result error">Barcode must contain only numbers.</div>';
+                return;
+            }
+            
+            results.innerHTML = '<div class="test-result success">Barcode validation passed! ✓</div>';
+            
+            // Simulate haptic feedback
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+
+        // Camera Scan Simulation
+        function simulateCameraScan() {
+            const input = document.getElementById('barcodeInput');
+            const results = document.getElementById('barcode-results');
+            
+            // Simulate scanning process
+            results.innerHTML = '<div class="test-result info">Simulating camera scan...</div>';
+            
+            setTimeout(() => {
+                const simulatedBarcode = '1234567890123';
+                input.value = simulatedBarcode;
+                results.innerHTML = '<div class="test-result success">Simulated barcode scanned: ' + simulatedBarcode + '</div>';
+                
+                // Trigger haptic feedback
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
+            }, 2000);
+        }
+
+        // Progress Indicator Test
+        function testProgressIndicator() {
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progress-text');
+            const results = document.getElementById('progress-results');
+            
+            progressBar.style.display = 'block';
+            progressFill.style.width = '0%';
+            
+            const steps = [
+                { progress: 20, text: 'Initializing...' },
+                { progress: 40, text: 'Validating data...' },
+                { progress: 60, text: 'Processing...' },
+                { progress: 80, text: 'Finalizing...' },
+                { progress: 100, text: 'Complete!' }
+            ];
+            
+            let currentStep = 0;
+            
+            const updateProgress = () => {
+                if (currentStep < steps.length) {
+                    const step = steps[currentStep];
+                    progressFill.style.width = step.progress + '%';
+                    progressText.innerHTML = `<div class="test-result info">${step.text} (${step.progress}%)</div>`;
+                    currentStep++;
+                    setTimeout(updateProgress, 800);
+                } else {
+                    setTimeout(() => {
+                        progressBar.style.display = 'none';
+                        progressText.innerHTML = '';
+                        results.innerHTML = '<div class="test-result success">Progress indicator test completed!</div>';
+                    }, 1000);
+                }
+            };
+            
+            updateProgress();
+        }
+
+        // Responsive Design Test
+        function updateResponsiveInfo() {
+            const responsiveInfo = document.getElementById('responsive-info');
+            const width = window.innerWidth;
+            let deviceType = '';
+            
+            if (width < 480) {
+                deviceType = 'Small Mobile';
+            } else if (width < 768) {
+                deviceType = 'Large Mobile';
+            } else if (width < 1024) {
+                deviceType = 'Tablet';
+            } else {
+                deviceType = 'Desktop';
+            }
+            
+            const orientation = width > window.innerHeight ? 'Landscape' : 'Portrait';
+            
+            responsiveInfo.innerHTML = `
+                <div class="test-result info">
+                    <strong>Current Layout:</strong><br>
+                    Device Type: ${deviceType}<br>
+                    Screen Size: ${width} x ${window.innerHeight}<br>
+                    Orientation: ${orientation}
+                </div>
+            `;
+        }
+
+        // Accessibility Test
+        function testAccessibility() {
+            const results = document.getElementById('accessibility-results');
+            const tests = [];
+            
+            // Test for proper ARIA labels
+            const buttons = document.querySelectorAll('button');
+            const hasAriaLabels = Array.from(buttons).some(btn => btn.getAttribute('aria-label'));
+            tests.push({
+                name: 'ARIA Labels',
+                passed: hasAriaLabels,
+                message: hasAriaLabels ? 'Some buttons have ARIA labels' : 'Consider adding ARIA labels to buttons'
+            });
+            
+            // Test for keyboard navigation
+            const focusableElements = document.querySelectorAll('button, input, [tabindex]');
+            tests.push({
+                name: 'Focusable Elements',
+                passed: focusableElements.length > 0,
+                message: `Found ${focusableElements.length} focusable elements`
+            });
+            
+            // Test for color contrast (simplified)
+            const hasHighContrast = window.matchMedia && window.matchMedia('(prefers-contrast: high)').matches;
+            tests.push({
+                name: 'High Contrast Support',
+                passed: true,
+                message: hasHighContrast ? 'High contrast mode detected' : 'Normal contrast mode'
+            });
+            
+            // Test for reduced motion
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            tests.push({
+                name: 'Reduced Motion Support',
+                passed: true,
+                message: prefersReducedMotion ? 'Reduced motion preferred' : 'Normal animations enabled'
+            });
+            
+            let resultsHTML = '<h3>Accessibility Test Results:</h3>';
+            tests.forEach(test => {
+                const className = test.passed ? 'success' : 'error';
+                resultsHTML += `<div class="test-result ${className}"><strong>${test.name}:</strong> ${test.message}</div>`;
+            });
+            
+            results.innerHTML = resultsHTML;
+        }
+
+        // Initialize tests
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDeviceInfo();
+            updateResponsiveInfo();
+            
+            // Add barcode input event listener
+            const barcodeInput = document.getElementById('barcodeInput');
+            barcodeInput.addEventListener('input', function(e) {
+                const value = e.target.value;
+                if (value.length === 13 || value.length === 14) {
+                    // Auto-validate when reaching correct length
+                    setTimeout(testBarcodeValidation, 100);
+                }
+            });
+            
+            // Update responsive info on resize
+            window.addEventListener('resize', updateResponsiveInfo);
+            window.addEventListener('orientationchange', function() {
+                setTimeout(updateResponsiveInfo, 100);
+            });
+        });
+    </script>
+</body>
+</html>

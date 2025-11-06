@@ -1,0 +1,59 @@
+<mvc:View controllerName="zui5recebfisic.controller.UCVisualization"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page title="Visualizar UCs" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Receipt Information Display -->
+                <VBox class="sapUiMediumMarginBottom">
+                    <Label text="Nota Fiscal:" class="sapUiSmallMarginBottom" />
+                    <Text id="ucVisualizationNfDisplay" text="{receiptContext>/nf}" class="sapUiMediumMarginBottom sapThemeHighlight-asColor" tooltip="Número da Nota Fiscal" />
+
+                    <Label text="Identificador:" class="sapUiSmallMarginBottom" />
+                    <Text id="ucVisualizationIdentificadorDisplay" text="{receiptContext>/identificador}" class="sapUiMediumMarginBottom sapThemeHighlight-asColor" tooltip="Identificador do container" />
+                </VBox>
+
+                <!-- UC List Section -->
+                <VBox class="sapUiMediumMarginBottom">
+                    <Label text="UCs Disponíveis:" class="sapUiSmallMarginBottom" />
+                    <List id="ucVisualizationList" items="{ucModel>/ucs}" noDataText="Nenhuma UC encontrada" class="mobileList sapUiMediumMarginBottom" tooltip="Lista de UCs disponíveis">
+                        <CustomListItem id="ucVisualizationListItem" type="Active" press="onUCItemPress" tooltip="Toque para selecionar UC">
+                            <customData>
+                                <core:CustomData key="uc" value="{ucModel>uc}" />
+                                <core:CustomData key="status" value="{ucModel>status}" />
+                            </customData>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                                <VBox class="sapUiTinyMarginEnd">
+                                    <Text text="UC: {ucModel>uc}" class="sapUiTinyMarginBottom" />
+                                    <ObjectStatus text="{ucModel>status}" state="{path: 'ucModel>status', formatter: '.formatStatusState'}" />
+                                </VBox>
+                                <Button icon="sap-icon://delete" type="Transparent" press="onDeleteUCPress" tooltip="Deletar UC" class="sapUiTinyMargin">
+                                    <customData>
+                                        <core:CustomData key="uc" value="{ucModel>uc}" />
+                                        <core:CustomData key="status" value="{ucModel>status}" />
+                                    </customData>
+                                </Button>
+                            </HBox>
+                        </CustomListItem>
+                    </List>
+                </VBox>
+
+                <!-- Action Buttons Section -->
+                <VBox class="buttonContainer sapUiLargeMarginTop" alignItems="Center">
+                    <!-- First Row: Início, Montar UC and Montar UC LxC -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="ucVisualizationInicioButton" text="Início" type="Emphasized" press="onInicioPress" class="sapUiTinyMarginEnd" icon="sap-icon://home" tooltip="Voltar ao menu principal" width="140px" />
+                        <Button id="ucVisualizationMontarUCButton" text="Montar UC" type="Emphasized" press="onMontarUCPress" class="sapUiTinyMarginEnd" icon="sap-icon://add" tooltip="Montar nova UC" width="140px" />
+                        <Button id="ucVisualizationMontarUCLxCButton" text="Montar UC LxC" type="Emphasized" press="onMontarUCLxCPress" class="" icon="sap-icon://add" tooltip="Montar nova UC LxC" width="140px" />
+                    </HBox>
+                    
+                    <!-- Second Row: Finalizar Recebimento -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="ucVisualizationFinalizarRecebimentoButton" text="Finalizar Recebimento" type="Emphasized" press="onFinalizarRecebimentoPress" class="" icon="sap-icon://accept" tooltip="Finalizar todo o recebimento" width="140px" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

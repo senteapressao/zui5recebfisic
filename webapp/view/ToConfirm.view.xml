@@ -1,0 +1,106 @@
+<mvc:View controllerName="zui5recebfisic.controller.ToConfirm"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="toConfirmPage" title="Execução TO_CONFIRM" showNavButton="true" navButtonPress="onNavBack" class="toConfirmPage">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Input Form Section -->
+                <VBox class="sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+                    <!-- UC Field -->
+                    <VBox class="sapUiTinyMarginBottom">
+                        <Label text="UC:" class="sapUiTinyMarginBottom" />
+                        <Input id="ucDisplay" 
+                               value="{toConfirm>/UC}"
+                               enabled="false"
+                               maxLength="50" 
+                               type="Text" 
+                               tooltip="UC identificada" 
+                               width="100%" />
+                    </VBox>
+                    
+                    <!-- Posição Sugerida Field -->
+                    <VBox class="sapUiTinyMarginBottom">
+                        <Label text="Posição Sugerida:" class="sapUiTinyMarginBottom" />
+                        <Input id="suggestedPositionInput" 
+                               value="{toConfirm>/SuggestedPosition}"
+                               enabled="false"
+                               maxLength="50" 
+                               type="Text" 
+                               tooltip="Posição sugerida pelo sistema" 
+                               width="100%" />
+                    </VBox>
+                    
+                    <!-- Posição Selecionada Field -->
+                    <VBox>
+                        <Label text="Posição Selecionada:" class="sapUiTinyMarginBottom" />
+                        <Input id="selectedPositionInput" 
+                               placeholder="Informar posição selecionada" 
+                               value="{toConfirm>/SelectedPosition}"
+                               valueLiveUpdate="true"
+                               liveChange="onSelectedPositionChange"
+                               submit="onSelectedPositionSubmit"
+                               maxLength="50" 
+                               type="Text" 
+                               tooltip="Informe a posição selecionada para armazenamento" 
+                               autocomplete="true" 
+                               width="100%" />
+                    </VBox>
+                </VBox>
+
+                <!-- Action Buttons Section -->
+                <VBox class="buttonContainer sapUiTinyMarginTop" alignItems="Center">
+                    <!-- First Row: Início and Ocorrência -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="toConfirmInicioButton" 
+                                text="Início" 
+                                type="Emphasized" 
+                                press="onInicioPress" 
+                                class="sapUiTinyMarginEnd" 
+                                icon="sap-icon://home" 
+                                tooltip="Voltar ao menu principal" 
+                                width="140px" />
+                        <Button id="toConfirmOcorrenciaButton" 
+                                text="Ocorrência" 
+                                type="Emphasized" 
+                                press="onOcorrenciaPress"
+                                class="sapUiTinyMarginEnd" 
+                                icon="sap-icon://alert"
+                                tooltip="Registrar ocorrência"
+                                width="140px" />
+                    </HBox>
+
+                    <!-- Second Row: Concluir -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="toConfirmConcluirButton" 
+                                text="Concluir" 
+                                type="Emphasized" 
+                                press="onConcluirPress"
+                                class="sapUiTinyMarginEnd" 
+                                icon="sap-icon://accept"
+                                tooltip="Concluir processo"
+                                width="140px" />
+                    </HBox>
+                </VBox>
+                
+                <!-- Loading indicator -->
+                <BusyIndicator id="toConfirmLoadingIndicator" 
+                               visible="false" 
+                               size="2rem" 
+                               class="loadingIndicator" />
+                
+                <!-- Error message -->
+                <MessageStrip id="toConfirmErrorMessage" 
+                              visible="false" 
+                              type="Error" 
+                              class="errorMessage" />
+                
+                <!-- Success message -->
+                <MessageStrip id="toConfirmSuccessMessage" 
+                              visible="false" 
+                              type="Success" 
+                              class="successMessage" />
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

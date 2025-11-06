@@ -1,0 +1,1014 @@
+/* Mobile-First Responsive Design for Physical Receipt System */
+
+/* Base styles - Mobile First */
+* {
+    box-sizing: border-box;
+}
+
+/* Touch-friendly base styles */
+.sapMBtn, .sapMInput, .sapMSelect, .sapMList .sapMLIB {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+}
+
+/* Main Menu Styles */
+.mainMenuPage .sapMPageHeader {
+    background-color: #0070f2;
+    color: white;
+}
+
+.mainMenuContainer {
+    min-height: 70vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainMenuTitle {
+    text-align: center;
+    color: #0070f2;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.buttonContainer {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mainMenuButton {
+    min-height: 3.5rem !important;
+    height: 3.5rem !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    width: 100% !important;
+    max-width: 320px !important;
+    min-width: 280px !important;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.mainMenuButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mainMenuButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.primaryButton {
+    background-color: #0070f2;
+    border-color: #0070f2;
+}
+
+.primaryButton:hover {
+    background-color: #005bb5;
+    border-color: #005bb5;
+}
+
+.secondaryButton {
+    background-color: #107dac;
+    border-color: #107dac;
+    color: white;
+}
+
+.secondaryButton:hover {
+    background-color: #0d6590;
+    border-color: #0d6590;
+}
+
+.tertiaryButton {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+}
+
+.tertiaryButton:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+}
+
+/* Form and Input Enhancements */
+.mobileFormContainer {
+    padding: 1rem;
+    max-width: 100%;
+}
+
+.mobileFormContainer .sapMLabel {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #333;
+}
+
+.mobileFormContainer .sapMInput {
+    width: 100%;
+    min-height: 30px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.mobileFormContainer .sapMInput input {
+    padding: 0.75rem 1rem;
+}
+
+/* Touch-friendly buttons */
+.mobileActionButton {
+    width: 100%;
+    min-height: 48px;
+    margin-bottom: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.mobileActionButton:last-child {
+    margin-bottom: 0;
+}
+
+/* Loading and Progress Indicators */
+.loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loadingSpinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0070f2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loadingText {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Progress Bar */
+.progressContainer {
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 8px;
+    background-color: #0070f2;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* Barcode Scanner Styles */
+.barcodeContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.barcodeInput {
+    width: 100%;
+    min-height: 48px;
+    font-size: 16px;
+    padding-right: 60px;
+}
+
+.barcodeScanButton {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    background-color: #0070f2;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.barcodeScanButton:hover {
+    background-color: #005bb5;
+}
+
+.barcodeScanButton:active {
+    background-color: #004494;
+}
+
+/* List Enhancements for Touch */
+.mobileList .sapMLIB {
+    min-height: 56px;
+    padding: 0.25rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.mobileList .sapMLIBContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mobileList .sapMSLITitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.mobileList .sapMSLIDescription {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+/* Action Sheet for Mobile */
+.mobileActionSheet {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.mobileActionSheet .sapMBtn {
+    width: 100%;
+    min-height: 56px;
+    text-align: left;
+    justify-content: flex-start;
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Toast Messages */
+.mobileToast {
+    bottom: 2rem;
+    left: 1rem;
+    right: 1rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Accessibility Enhancements */
+.screenReaderOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus indicators */
+.sapMBtn:focus,
+.sapMInput:focus,
+.sapMSelect:focus {
+    outline: 2px solid #0070f2;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .mainMenuButton,
+    .mobileActionButton {
+        border-width: 2px;
+        font-weight: 600;
+    }
+    
+    .mainMenuTitle {
+        font-weight: 700;
+    }
+    
+    .sapMInput {
+        border-width: 2px;
+    }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .mainMenuContainer {
+        padding: 1rem 0.5rem;
+        min-height: 60vh;
+    }
+    
+    .mainMenuTitle {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .mainMenuButton {
+        width: 100% !important;
+        max-width: 320px;
+        height: 4rem;
+        min-height: 4rem;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .buttonContainer {
+        width: 100%;
+        padding: 0 1rem;
+    }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .mainMenuContainer {
+        padding: 1.5rem 1rem;
+    }
+    
+    .mainMenuButton {
+        width: 300px !important;
+        height: 3.75rem;
+        min-height: 3.75rem;
+        flex-shrink: 0;
+    }
+}
+
+/* Touch-friendly enhancements */
+@media (pointer: coarse) {
+    .mainMenuButton {
+        height: 4rem;
+        min-height: 4rem;
+        padding: 0.75rem 1.5rem;
+        flex-shrink: 0;
+    }
+    
+    .mainMenuButton .sapMBtnIcon {
+        font-size: 1.2rem;
+        margin-right: 0.75rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .mainMenuButton {
+        border-width: 2px;
+        font-weight: 600;
+    }
+    
+    .mainMenuTitle {
+        font-weight: 700;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .mainMenuButton {
+        transition: none;
+    }
+    
+    .mainMenuButton:hover {
+        transform: none;
+    }
+}
+
+/* Button Standardization Styles - Removed duplicate .buttonContainer rule */
+
+/* Force all main menu buttons to have identical dimensions */
+.mainMenuPage .buttonContainer .mainMenuButton {
+    width: 100% !important;
+    min-width: 280px !important;
+    max-width: 320px !important;
+    height: 3.5rem !important;
+    min-height: 3.5rem !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+}
+
+/* Mobile specific button sizing */
+@media (max-width: 768px) {
+    .mainMenuPage .buttonContainer .mainMenuButton {
+        height: 4rem !important;
+        min-height: 4rem !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        min-width: 280px !important;
+    }
+}
+
+/* Override SAP UI5 button styles with maximum specificity */
+.sapMBtn.mainMenuButton.primaryButton.mobileActionButton {
+    width: 100% !important;
+    min-width: 280px !important;
+    max-width: 320px !important;
+    height: 3.5rem !important;
+    min-height: 3.5rem !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .sapMBtn.mainMenuButton.primaryButton.mobileActionButton {
+        height: 4rem !important;
+        min-height: 4rem !important;
+    }
+}
+
+/* Uniform button sizing - highest specificity */
+.uniformButton {
+    width: 100% !important;
+    min-width: 280px !important;
+    max-width: 320px !important;
+    height: 3.5rem !important;
+    min-height: 3.5rem !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+@media (max-width: 768px) {
+    .uniformButton {
+        height: 4rem !important;
+        min-height: 4rem !important;
+    }
+}
+
+
+
+.buttonRow {
+    margin-bottom: 0.75rem;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.buttonRow:last-child {
+    margin-bottom: 0;
+}
+
+.standardButton {
+    height: 48px;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.standardButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.standardButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.standardButton .sapMBtnIcon {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* Responsive adjustments for button grid */
+@media (max-width: 480px) {
+    .buttonContainer {
+        padding: 0.75rem;
+        max-width: 100%;
+    }
+    
+    .buttonRow {
+        gap: 0.5rem;
+    }
+    
+    .standardButton {
+        width: 160px !important;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .standardButton {
+        width: 140px !important;
+        font-size: 0.85rem;
+    }
+    
+    .standardButton .sapMBtnIcon {
+        font-size: 0.9rem;
+    }
+}
+
+/* Armazenar UC Screen Styles */
+.armazenarUCPage .sapMPageHeader {
+    background-color: #0070f2;
+    color: white;
+}
+
+.armazenarUCContainer {
+    min-height: 60vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+
+.inputLabel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.ucInputField {
+    width: 100%;
+    min-height: 48px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    transition: border-color 0.2s ease;
+}
+
+.ucInputField:focus {
+    border-color: #0070f2;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 112, 242, 0.1);
+}
+
+.loadingIndicator {
+    margin: 1rem 0;
+}
+
+.errorMessage {
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #fee;
+    border: 1px solid #fcc;
+    color: #c33;
+}
+
+.successMessage {
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #efe;
+    border: 1px solid #cfc;
+    color: #363;
+}
+
+.footerToolbar {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    padding: 0.5rem 1rem;
+}
+
+.footerButton {
+    min-height: 44px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    flex: 1;
+    max-width: 120px;
+}
+
+/* Mobile optimizations for Armazenar UC */
+@media (max-width: 768px) {
+    .armazenarUCContainer {
+        padding: 1rem 0.5rem;
+        min-height: 50vh;
+    }
+    
+    .inputContainer {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .ucInputField {
+        min-height: 52px;
+        font-size: 18px; /* Larger font for mobile */
+    }
+    
+    .footerButton {
+        min-height: 48px;
+        font-size: 1.1rem;
+        max-width: 100px;
+    }
+    
+    .errorMessage,
+    .successMessage {
+        margin: 0.5rem 1rem;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Touch-friendly enhancements */
+@media (pointer: coarse) {
+    .ucInputField {
+        min-height: 52px;
+        padding: 1rem;
+    }
+    
+    .footerButton {
+        min-height: 52px;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Haptic feedback animation */
+.hapticFeedback {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* Input error state */
+.inputError {
+    border-color: #dc3545 !important;
+    background-color: #fff5f5;
+}
+
+.inputError:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+}
+
+/* Button loading state */
+.buttonLoading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.buttonLoading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 0.5rem;
+}
+
+/* TO_CONFIRM Screen Styles */
+.toConfirmPage .sapMPageHeader {
+    background-color: #0070f2;
+    color: white;
+}
+
+.toConfirmContainer {
+    min-height: 60vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ucDisplayField {
+    width: 100%;
+    min-height: 48px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    background-color: #f8f9fa;
+    color: #666;
+}
+
+.suggestedPositionField {
+    width: 100%;
+    min-height: 48px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    background-color: #f8f9fa;
+    color: #666;
+}
+
+.selectedPositionField {
+    width: 100%;
+    min-height: 48px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    transition: border-color 0.2s ease;
+}
+
+.selectedPositionField:focus {
+    border-color: #0070f2;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 112, 242, 0.1);
+}
+
+/* Mobile optimizations for TO_CONFIRM */
+@media (max-width: 768px) {
+    .toConfirmContainer {
+        padding: 1rem 0.5rem;
+        min-height: 50vh;
+    }
+    
+    .inputContainer {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .ucDisplayField,
+    .suggestedPositionField,
+    .selectedPositionField {
+        min-height: 52px;
+        font-size: 18px;
+    }
+    
+    .footerButton {
+        min-height: 48px;
+        font-size: 1.1rem;
+        max-width: 100px;
+    }
+    
+    .errorMessage,
+    .successMessage {
+        margin: 0.5rem 1rem;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Touch-friendly enhancements for TO_CONFIRM */
+@media (pointer: coarse) {
+    .ucDisplayField,
+    .suggestedPositionField,
+    .selectedPositionField {
+        min-height: 52px;
+        padding: 1rem;
+    }
+    
+    .footerButton {
+        min-height: 52px;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Finalization Check Mobile Styles */
+.mobileItemsContainer {
+    width: 100%;
+    padding: 0;
+}
+
+.mobileItemCard {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+}
+
+.mobileItemCard:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.mobileLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.mobileText {
+    font-size: 0.875rem;
+    color: #333;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.mobileMaterialText {
+    font-weight: 500;
+    color: #0070f2;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.mobileUcText {
+    font-weight: 600;
+    color: #28a745;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.mobileQuantityText {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.mobileValidityText {
+    font-weight: 500;
+    color: #dc3545;
+    font-size: 0.85rem;
+}
+
+.mobileSeparator {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+/* Mobile-specific adjustments for Finalization Check */
+@media (max-width: 768px) {
+    .mobileItemCard {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+    }
+    
+    .mobileLabel {
+        font-size: 0.8rem;
+        margin-bottom: 0.375rem;
+    }
+    
+    .mobileText {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .mobileMaterialText {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+    
+    .mobileUcText {
+        font-size: 1rem;
+    }
+    
+    .mobileQuantityText {
+        font-size: 1rem;
+    }
+    
+    .mobileValidityText {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .mobileItemCard {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .mobileLabel {
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .mobileText {
+        font-size: 0.85rem;
+    }
+    
+    .mobileMaterialText {
+        font-size: 0.9rem;
+    }
+    
+    .mobileUcText {
+        font-size: 0.9rem;
+    }
+    
+    .mobileQuantityText {
+        font-size: 0.9rem;
+    }
+    
+    .mobileValidityText {
+        font-size: 0.8rem;
+    }
+}
+
+/* Touch-friendly enhancements for mobile items */
+@media (pointer: coarse) {
+    .mobileItemCard {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .mobileLabel {
+        font-size: 0.8rem;
+    }
+    
+    .mobileText {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
+
+/* High contrast mode support for mobile items */
+@media (prefers-contrast: high) {
+    .mobileItemCard {
+        border-width: 2px;
+        border-color: #000;
+    }
+    
+    .mobileLabel {
+        font-weight: 700;
+        color: #000;
+    }
+    
+    .mobileText {
+        font-weight: 500;
+        color: #000;
+    }
+    
+    .mobileMaterialText {
+        color: #0000ff;
+        font-weight: 600;
+    }
+    
+    .mobileUcText {
+        color: #008000;
+        font-weight: 700;
+    }
+    
+    .mobileValidityText {
+        color: #ff0000;
+        font-weight: 600;
+    }
+}
+
+/* Reduced motion support for mobile items */
+@media (prefers-reduced-motion: reduce) {
+    .mobileItemCard {
+        transition: none;
+    }
+    
+    .mobileItemCard:hover {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+}

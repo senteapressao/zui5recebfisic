@@ -1,0 +1,44 @@
+<mvc:View controllerName="zui5recebfisic.controller.PhysicalReceipt"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Page id="physicalReceiptPage" title="Recebimento Físico" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Input Form Section -->
+                <VBox class="sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+                    <!-- Identificador Field -->
+                    <HBox alignItems="Center">
+                        <Label text="Identificador:" width="120px" />
+                        <Input id="identificadorInput" placeholder="Digite o identificador do container/caminhão" value="{receiptContext>/identificador}" maxLength="50" type="Text" change="_onIdentificadorInputChange" submit="onIdentificadorSubmit" tooltip="Identificador do container ou caminhão" autocomplete="true" width="100%" />
+                        
+                    </HBox>
+                    <HBox>
+                        <Label text="Doca:" width="120px" />
+                        <Input id="DocaInput" placeholder="Digite a Doca" value="{receiptContext>/doca}" maxLength="50" type="Text" tooltip="Doca" autocomplete="true" width="100%" change="onChangeDoca"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Impressora:" width="120px" />
+                        <Input id="ImpressoraInput" placeholder="Digite a Imnpressora" value="{receiptContext>/impressora}" maxLength="50" type="Text" tooltip="Doca" autocomplete="true" width="100%" change="onChangeImpressora"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Action Buttons Section -->
+                <VBox class="buttonContainer sapUiTinyMarginTop" alignItems="Center">
+                    <!-- First Row: Ocorrência and Visualizar UCs -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="ocorrenciaButton" text="Ocorrência" type="Emphasized" press="onOcorrenciaPress" class="sapUiTinyMarginEnd" icon="sap-icon://alert" tooltip="Registrar ocorrência" width="140px" visible="false"/>
+                        <Button id="visualizarUCsButton" text="Visualizar UCs" type="Emphasized" press="onVisualizarUCsPress" class="sapUiTinyMarginEnd" icon="sap-icon://list" tooltip="Visualizar UCs existentes" width="140px" />
+                    </HBox>
+
+                    <!-- Second Row: Início and Concluir -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="inicioButtonPhysical" text="Início" type="Emphasized" press="onInicioPress" class="sapUiTinyMarginEnd" icon="sap-icon://home" tooltip="Voltar ao menu principal" width="140px" />
+                        <Button id="montarUCButtonPhysical" text="Montar UC" type="Emphasized" press="onMontarUCPress" class="sapUiTinyMarginEnd" icon="sap-icon://add" tooltip="Montar nova UC" width="140px" />
+                    </HBox>
+
+
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,261 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZGWEWM_RECEB_FISICO_SRV" xml:lang="pt" sap:schema-version="1">
+<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+<EntityType Name="ValidMatnr" sap:content-version="1">
+<Key>
+<PropertyRef Name="MaterialSKU"/>
+</Key>
+<Property Name="MaterialSKU" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="MaterialDescription" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="RequiresExpiration" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="MaterialGroup" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Qtd" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="BaseUnit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="ValidationStatus" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="ValidUC" sap:content-version="1">
+<Key>
+<PropertyRef Name="Nf"/>
+<PropertyRef Name="Identificador"/>
+</Key>
+<Property Name="Nf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Identificador" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Material" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Quantidade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="StatusContainer" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="DataValidade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="Retorno" sap:content-version="1">
+<Key>
+<PropertyRef Name="Success"/>
+</Key>
+<Property Name="Success" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Message" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="Retorno2" sap:content-version="1">
+<Key>
+<PropertyRef Name="Success"/>
+</Key>
+<Property Name="Success" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Message" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Tanum" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="Retorno3" sap:content-version="1">
+<Key>
+<PropertyRef Name="Success"/>
+</Key>
+<Property Name="SuggestedPosition" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Success" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Message" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="MatEmb" sap:content-version="1">
+<Key>
+<PropertyRef Name="Matnr"/>
+<PropertyRef Name="Werks"/>
+</Key>
+<Property Name="Matnr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Descr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Werks" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="TipoOcorrencia" sap:content-version="1">
+<Key>
+<PropertyRef Name="Tipo"/>
+</Key>
+<Property Name="Tipo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Descr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="DivergenciaNf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="SegreMat" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="Depositos" sap:content-version="1">
+<Key>
+<PropertyRef Name="Lgort"/>
+</Key>
+<Property Name="Lgort" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Descr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="Header" sap:content-version="1">
+<Key>
+<PropertyRef Name="Nf"/>
+<PropertyRef Name="Identificador"/>
+</Key>
+<Property Name="Nf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Identificador" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Operacao" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="StatusReceb" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="StatusContainer" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<NavigationProperty Name="ItemsSet" Relationship="ZGWEWM_RECEB_FISICO_SRV.toItem" FromRole="FromRole_toItem" ToRole="ToRole_toItem"/>
+</EntityType>
+<EntityType Name="Items" sap:content-version="1">
+<Key>
+<PropertyRef Name="Nf"/>
+<PropertyRef Name="Uc"/>
+<PropertyRef Name="ItemUc"/>
+<PropertyRef Name="Identificador"/>
+</Key>
+<Property Name="Nf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Uc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="ItemUc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Identificador" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="DataValidade" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Material13" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Material14" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Material" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Quantidade" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="StatusUC" sap:content-version="1">
+<Key>
+<PropertyRef Name="Nf"/>
+<PropertyRef Name="Identificador"/>
+<PropertyRef Name="Uc"/>
+</Key>
+<Property Name="Nf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Identificador" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Uc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Td1" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Td2" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="ConfTd2" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Status" Type="Edm.String" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+<NavigationProperty Name="ItemsSet" Relationship="ZGWEWM_RECEB_FISICO_SRV.toUC" FromRole="FromRole_toUC" ToRole="ToRole_toUC"/>
+</EntityType>
+<EntityType Name="UC" sap:content-version="1">
+<Key>
+<PropertyRef Name="Uc"/>
+</Key>
+<Property Name="Uc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="Centro" sap:content-version="1">
+<Key>
+<PropertyRef Name="Werks"/>
+</Key>
+<Property Name="Werks" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="NF" sap:content-version="1">
+<Key>
+<PropertyRef Name="Nf"/>
+</Key>
+<Property Name="Nf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<Association Name="toUC" sap:content-version="1">
+<End Type="ZGWEWM_RECEB_FISICO_SRV.StatusUC" Multiplicity="1" Role="FromRole_toUC"/>
+<End Type="ZGWEWM_RECEB_FISICO_SRV.Items" Multiplicity="*" Role="ToRole_toUC"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_toUC">
+<PropertyRef Name="Nf"/>
+<PropertyRef Name="Identificador"/>
+<PropertyRef Name="Uc"/>
+</Principal>
+<Dependent Role="ToRole_toUC">
+<PropertyRef Name="Nf"/>
+<PropertyRef Name="Identificador"/>
+<PropertyRef Name="Uc"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="toItem" sap:content-version="1">
+<End Type="ZGWEWM_RECEB_FISICO_SRV.Header" Multiplicity="1" Role="FromRole_toItem"/>
+<End Type="ZGWEWM_RECEB_FISICO_SRV.Items" Multiplicity="*" Role="ToRole_toItem"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_toItem">
+<PropertyRef Name="Identificador"/>
+<PropertyRef Name="Nf"/>
+</Principal>
+<Dependent Role="ToRole_toItem">
+<PropertyRef Name="Identificador"/>
+<PropertyRef Name="Nf"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<EntityContainer Name="ZGWEWM_RECEB_FISICO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="ValidMatnrSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.ValidMatnr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="ValidUCSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.ValidUC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="RetornoSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.Retorno" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="Retorno2Set" EntityType="ZGWEWM_RECEB_FISICO_SRV.Retorno2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="Retorno3Set" EntityType="ZGWEWM_RECEB_FISICO_SRV.Retorno3" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="MatEmbSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.MatEmb" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="TipoOcorrenciaSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.TipoOcorrencia" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="DepositosSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.Depositos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="HeaderSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.Header" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="ItemsSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.Items" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="StatusUCSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.StatusUC" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="UCSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.UC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="CentroSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.Centro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="NFSet" EntityType="ZGWEWM_RECEB_FISICO_SRV.NF" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<AssociationSet Name="toItemSet" Association="ZGWEWM_RECEB_FISICO_SRV.toItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="HeaderSet" Role="FromRole_toItem"/>
+<End EntitySet="ItemsSet" Role="ToRole_toItem"/>
+</AssociationSet>
+<AssociationSet Name="toUCSet" Association="ZGWEWM_RECEB_FISICO_SRV.toUC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="StatusUCSet" Role="FromRole_toUC"/>
+<End EntitySet="ItemsSet" Role="ToRole_toUC"/>
+</AssociationSet>
+<FunctionImport Name="ValidarCodigoBarras" ReturnType="ZGWEWM_RECEB_FISICO_SRV.ValidMatnr" EntitySet="ValidMatnrSet" m:HttpMethod="POST">
+<Parameter Name="CodigoBarras" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="ValidateUC" ReturnType="ZGWEWM_RECEB_FISICO_SRV.ValidUC" EntitySet="ValidUCSet" m:HttpMethod="GET">
+<Parameter Name="UC" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="CreateTD1" ReturnType="ZGWEWM_RECEB_FISICO_SRV.Retorno" EntitySet="RetornoSet" m:HttpMethod="POST">
+<Parameter Name="UC" Type="Edm.String" Mode="In"/>
+<Parameter Name="NF" Type="Edm.String" Mode="In"/>
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="CreateTD2" ReturnType="ZGWEWM_RECEB_FISICO_SRV.Retorno2" EntitySet="Retorno2Set" m:HttpMethod="POST">
+<Parameter Name="UC" Type="Edm.String" Mode="In"/>
+<Parameter Name="NF" Type="Edm.String" Mode="In"/>
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="GetSuggestedPosition" ReturnType="ZGWEWM_RECEB_FISICO_SRV.Retorno3" EntitySet="Retorno3Set" m:HttpMethod="GET">
+<Parameter Name="UC" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="ConfirmToConfirm" ReturnType="ZGWEWM_RECEB_FISICO_SRV.Retorno" EntitySet="RetornoSet" m:HttpMethod="POST">
+<Parameter Name="SelectedPosition" Type="Edm.String" Mode="In"/>
+<Parameter Name="ExceptionCode" Type="Edm.String" Mode="In"/>
+<Parameter Name="UC" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="FinalizaReceb" ReturnType="ZGWEWM_RECEB_FISICO_SRV.Retorno" EntitySet="RetornoSet" m:HttpMethod="POST">
+<Parameter Name="Nf" Type="Edm.String" Mode="In"/>
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="ValidIdentificador" ReturnType="ZGWEWM_RECEB_FISICO_SRV.NF" EntitySet="NFSet" m:HttpMethod="GET">
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="CriarOcorrencia" ReturnType="ZGWEWM_RECEB_FISICO_SRV.Retorno" EntitySet="RetornoSet" m:HttpMethod="POST">
+<Parameter Name="Nf" Type="Edm.String" Mode="In"/>
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+<Parameter Name="Uc" Type="Edm.String" Mode="In"/>
+<Parameter Name="Material" Type="Edm.String" Mode="In"/>
+<Parameter Name="Quantidade" Type="Edm.String" Mode="In"/>
+<Parameter Name="TipoOco" Type="Edm.String" Mode="In"/>
+<Parameter Name="Descr" Type="Edm.String" Mode="In"/>
+<Parameter Name="Deposito" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="ValidarUsuarioCentro" ReturnType="ZGWEWM_RECEB_FISICO_SRV.Centro" EntitySet="CentroSet" m:HttpMethod="POST">
+<Parameter Name="Usuario" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="CriarUC" ReturnType="ZGWEWM_RECEB_FISICO_SRV.UC" EntitySet="UCSet" m:HttpMethod="POST">
+<Parameter Name="MatEmbalagem" Type="Edm.String" Mode="In"/>
+<Parameter Name="Nf" Type="Edm.String" Mode="In"/>
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="ConcluirUC" ReturnType="ZGWEWM_RECEB_FISICO_SRV.UC" EntitySet="UCSet" m:HttpMethod="POST">
+<Parameter Name="Nf" Type="Edm.String" Mode="In"/>
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+<Parameter Name="Uc" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="DeletarUC" ReturnType="ZGWEWM_RECEB_FISICO_SRV.UC" EntitySet="UCSet" m:HttpMethod="POST">
+<Parameter Name="Uc" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="ValidaNF" ReturnType="ZGWEWM_RECEB_FISICO_SRV.NF" EntitySet="NFSet" m:HttpMethod="POST">
+<Parameter Name="Nf" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+<FunctionImport Name="DeterminarOP" ReturnType="ZGWEWM_RECEB_FISICO_SRV.NF" EntitySet="NFSet" m:HttpMethod="POST">
+<Parameter Name="Nf" Type="Edm.String" Mode="In"/>
+<Parameter Name="Identificador" Type="Edm.String" Mode="In"/>
+</FunctionImport>
+</EntityContainer>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://vhegns4dci.sap.elgin.com.br:44300/sap/opu/odata/sap/ZGWEWM_RECEB_FISICO_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://vhegns4dci.sap.elgin.com.br:44300/sap/opu/odata/sap/ZGWEWM_RECEB_FISICO_SRV/$metadata"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

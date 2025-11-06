@@ -1,0 +1,143 @@
+<mvc:View controllerName="zui5recebfisic.controller.OcorrenciaSegregacao"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="ocorrenciaSegregacaoPage" title="Ocorrência - Segregação de Material" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Form Section -->
+                <VBox class="sapUiLargeMarginTop sapUiLargeMarginBeginEnd">
+                    
+                    <!-- Tipo de Ocorrência Field (Read-only) -->
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Label text="Tipo ocorrência" class="sapUiTinyMarginBottom" />
+                        <Input 
+                            id="tipoOcorrenciaInput" 
+                            placeholder="Tipo ocorrência"
+                            value="{occurrenceContext>/tipoOcorrenciaDesc}"
+                            editable="false"
+                            tooltip="Tipo de ocorrência selecionado" />
+                    </VBox>
+
+                    <!-- Separator Line -->
+                    <HBox class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+                        <core:HTML content="&lt;hr style='border: none; border-top: 1px solid #ccc; width: 100%; margin: 0;' /&gt;" xmlns:core="sap.ui.core" />
+                    </HBox>
+
+                    <!-- UC Information Section -->
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Label text="Nota fiscal:" class="sapUiTinyMarginBottom" />
+                        <Input 
+                            id="segregacaoNfDisplay" 
+                            value="{occurrenceContext>/nf}"
+                            editable="false"
+                            tooltip="Número da Nota Fiscal" />
+                    </VBox>
+
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Label text="Identificador:" class="sapUiTinyMarginBottom" />
+                        <Input 
+                            id="segregacaoIdentificadorDisplay" 
+                            value="{occurrenceContext>/identificador}"
+                            editable="false"
+                            tooltip="Identificador do container" />
+                    </VBox>
+
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Label text="UC:" class="sapUiTinyMarginBottom" />
+                        <Input 
+                            id="segregacaoUcDisplay" 
+                            value="{occurrenceContext>/uc}"
+                            editable="false"
+                            tooltip="Número da UC" />
+                    </VBox>
+
+                    <!-- Scanned Items Section -->
+                    <VBox class="sapUiMediumMarginTop sapUiSmallMarginBottom">
+                        <Label text="{= 'Itens Escaneados: ' + ${occurrenceContext>/scannedItemsCount}}" class="sapUiMediumMarginBottom" />
+                        <List 
+                            id="scannedItemsList" 
+                            items="{occurrenceContext>/scannedItems}" 
+                            noDataText="Nenhum item escaneado" 
+                            class="mobileList sapUiMediumMarginBottom" 
+                            tooltip="Lista de itens já escaneados">
+                            <StandardListItem 
+                                title="{= ${occurrenceContext>material} ? ${occurrenceContext>material} + ' - Qtd: ' + (${occurrenceContext>quantidade} ? Math.floor(${occurrenceContext>quantidade}) : '0') : 'Material não definido'}" 
+                                description="{= ${occurrenceContext>dataValidade} ? 'Validade: ' + ${occurrenceContext>dataValidade} : 'Sem validade'}" 
+                                type="Active" 
+                                press="onItemPress" 
+                                tooltip="Toque para editar ou remover item">
+                                <customData>
+                                    <core:CustomData key="itemIndex" value="{occurrenceContext>itemIndex}" xmlns:core="sap.ui.core" />
+                                </customData>
+                            </StandardListItem>
+                        </List>
+                    </VBox>
+
+                    <!-- Button to return to AssembleUC for modifications -->
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Button 
+                            id="modificarItensButton" 
+                            text="Modificar Itens" 
+                            type="Transparent" 
+                            press="onModificarItensPress" 
+                            icon="sap-icon://edit" 
+                            tooltip="Voltar para tela de montagem para modificar itens" />
+                    </VBox>
+
+                    <!-- Separator Line -->
+                    <HBox class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+                        <core:HTML content="&lt;hr style='border: none; border-top: 1px solid #ccc; width: 100%; margin: 0;' /&gt;" xmlns:core="sap.ui.core" />
+                    </HBox>
+
+                    <!-- Depósito Field -->
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Label text="Indicar depósito para segregar" class="sapUiTinyMarginBottom" />
+                        <ComboBox 
+                            id="depositoComboBox"
+                            placeholder="Selecione o depósito"
+                            selectedKey="{occurrenceContext>/deposito}"
+                            selectionChange="_onDepositoChange"
+                            valueStateText="Selecione um depósito"
+                            tooltip="Selecione o depósito para segregação"
+                            showSecondaryValues="true"
+                            items="{
+                                path: 'depositosModel>/DepositosSet',
+                                templateShareable: false
+                            }">
+                            <core:Item 
+                                key="{depositosModel>Lgort}" 
+                                text="{depositosModel>Lgort} - {depositosModel>Descr}"
+                                xmlns:core="sap.ui.core" />
+                        </ComboBox>
+                    </VBox>
+
+                </VBox>
+
+                <!-- Action Buttons Section -->
+                <VBox class="buttonContainer sapUiLargeMarginTop" alignItems="Center">
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button 
+                            id="segregacaoVoltarButton" 
+                            text="Voltar" 
+                            type="Emphasized" 
+                            press="onVoltarPress" 
+                            class="sapUiTinyMarginEnd" 
+                            icon="sap-icon://nav-back" 
+                            width="140px"
+                            tooltip="Voltar para tela anterior" />
+                        <Button 
+                            id="segregacaoConcluirButton" 
+                            text="Concluir" 
+                            type="Emphasized" 
+                            press="onConcluirPress" 
+                            class="" 
+                            icon="sap-icon://complete" 
+                            width="140px"
+                            tooltip="Concluir ocorrência com segregação" />
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

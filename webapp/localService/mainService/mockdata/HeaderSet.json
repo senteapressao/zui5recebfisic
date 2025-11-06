@@ -1,0 +1,13 @@
+{
+  "d": {
+    "results": [
+      {
+        "Nf": "123456789",
+        "Identificador": "CONT001",
+        "Operacao": "Normal",
+        "StatusReceb": "Inicial",
+        "StatusContainer": "Inicial"
+      }
+    ]
+  }
+}

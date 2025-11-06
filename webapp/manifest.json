@@ -1,0 +1,291 @@
+{
+  "_version": "1.48.0",
+  "sap.app": {
+    "id": "zui5recebfisic",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.17.1",
+      "toolsId": "9f247ed1-350a-459b-91e0-76d00ceb7789"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZGWEWM_RECEB_FISICO_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.108.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zui5recebfisic.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          },
+          "defaultOperationMode": "Server",
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "zui5recebfisic.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMainMenu",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMainMenu"
+          ]
+        },
+        {
+          "name": "RoutePhysicalReceipt",
+          "pattern": "physicalReceipt",
+          "target": [
+            "TargetPhysicalReceipt"
+          ]
+        },
+        {
+          "name": "RouteCreateUC",
+          "pattern": "createUC",
+          "target": [
+            "TargetCreateUC"
+          ]
+        },
+        {
+          "name": "RouteAssembleUC",
+          "pattern": "assembleUC",
+          "target": [
+            "TargetAssembleUC"
+          ]
+        },
+        {
+          "name": "RouteAssembleUCLxC",
+          "pattern": "assembleUCLxC",
+          "target": [
+            "TargetAssembleUCLxC"
+          ]
+        },
+        {
+          "name": "RouteUCVisualization",
+          "pattern": "ucVisualization",
+          "target": [
+            "TargetUCVisualization"
+          ]
+        },
+        {
+          "name": "RouteFinalizationCheck",
+          "pattern": "finalizationCheck",
+          "target": [
+            "TargetFinalizationCheck"
+          ]
+        },
+        {
+          "name": "RouteArmazenarUC",
+          "pattern": "armazenarUC",
+          "target": [
+            "TargetArmazenarUC"
+          ]
+        },
+        {
+          "name": "RouteToConfirm",
+          "pattern": "toConfirm",
+          "target": [
+            "TargetToConfirm"
+          ]
+        },
+        {
+          "name": "RouteOcorrencia",
+          "pattern": "ocorrencia",
+          "target": [
+            "TargetOcorrencia"
+          ]
+        },
+        {
+          "name": "RouteOcorrenciaSegregacao",
+          "pattern": "ocorrenciaSegregacao",
+          "target": [
+            "TargetOcorrenciaSegregacao"
+          ]
+        },
+        {
+          "name": "RouteConcluirNF",
+          "pattern": "concluirNF",
+          "target": [
+            "TargetConcluirNF"
+          ]
+        },
+        {
+          "name": "RouteFinalizarRecebimentoNF",
+          "pattern": "finalizarRecebimentoNF",
+          "target": [
+            "TargetFinalizarRecebimentoNF"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMainMenu": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "MainMenu",
+          "viewName": "MainMenu"
+        },
+        "TargetPhysicalReceipt": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "PhysicalReceipt",
+          "viewName": "PhysicalReceipt"
+        },
+        "TargetCreateUC": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "CreateUC",
+          "viewName": "CreateUC"
+        },
+        "TargetAssembleUC": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AssembleUC",
+          "viewName": "AssembleUC"
+        },
+        "TargetAssembleUCLxC": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AssembleUCLxC",
+          "viewName": "AssembleUCLxC"
+        },
+        "TargetUCVisualization": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UCVisualization",
+          "viewName": "UCVisualization"
+        },
+        "TargetFinalizationCheck": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "FinalizationCheck",
+          "viewName": "FinalizationCheck"
+        },
+        "TargetArmazenarUC": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ArmazenarUC",
+          "viewName": "ArmazenarUC"
+        },
+        "TargetToConfirm": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ToConfirm",
+          "viewName": "ToConfirm"
+        },
+        "TargetOcorrencia": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Ocorrencia",
+          "viewName": "Ocorrencia"
+        },
+        "TargetOcorrenciaSegregacao": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "OcorrenciaSegregacao",
+          "viewName": "OcorrenciaSegregacao"
+        },
+        "TargetConcluirNF": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ConcluirNF",
+          "viewName": "ConcluirNF"
+        },
+        "TargetFinalizarRecebimentoNF": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "FinalizarRecebimentoNF",
+          "viewName": "FinalizarRecebimentoNF"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "zui5recebfisic.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

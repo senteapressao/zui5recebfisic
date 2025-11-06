@@ -1,0 +1,42 @@
+<mvc:View controllerName="zui5recebfisic.controller.ArmazenarUC"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="armazenarUCPage" title="Armazenar HU" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Input Form Section -->
+                <VBox class="sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+                    <!-- UC Field -->
+                    <VBox>
+                        <Label text="UC para Armazenar:" class="sapUiTinyMarginBottom" />
+                        <Input id="ucInput" value="{armazenarUC>/ucInput}" placeholder="Informar UC" valueLiveUpdate="true" liveChange="onUCInputChange" change="onUCInputChange" submit="onUCSubmit" maxLength="200" type="Text" tooltip="Informe a UC para armazenamento" autocomplete="true" width="100%" />
+                    </VBox>
+                </VBox>
+                <!-- Action Buttons Section -->
+                <VBox class="buttonContainer sapUiTinyMarginTop" alignItems="Center">
+                    <!-- First Row: Início and Ocorrência -->
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button id="armazenarUCInicioButton" text="Início" type="Emphasized" press="onInicioPress" class="sapUiTinyMarginEnd" icon="sap-icon://home" tooltip="Voltar ao menu principal" width="140px" />
+                        <Button id="proximoButton" text="Próximo" type="Emphasized" press="onProximoPress" class="sapUiTinyMarginEnd" icon="sap-icon://arrow-right" tooltip="Prosseguir com o armazenamento" width="140px" enabled="false" />
+                   
+                    </HBox>
+
+                    <!-- Second Row: Próximo -->
+                  
+                </VBox>
+                <!-- Loading indicator -->
+                <BusyIndicator id="loadingIndicator" visible="false" size="2rem" class="loadingIndicator" />
+
+                <!-- Error message -->
+                <MessageStrip id="errorMessage" visible="false" type="Error" class="errorMessage" />
+
+                <!-- Success message -->
+                <MessageStrip id="successMessage" visible="false" type="Success" class="successMessage" />
+            </VBox>
+
+        </content>
+
+
+    </Page>
+</mvc:View>

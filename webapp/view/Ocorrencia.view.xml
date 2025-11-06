@@ -1,0 +1,94 @@
+<mvc:View controllerName="zui5recebfisic.controller.Ocorrencia"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="ocorrenciaPage" title="Abrir ocorrência" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="mobileFormContainer">
+                <!-- Form Section -->
+                <VBox class="sapUiLargeMarginTop sapUiLargeMarginBeginEnd">
+                    
+                    <!-- Tipo de Ocorrência Field -->
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Label text="Tipo ocorrência" class="sapUiTinyMarginBottom" />
+                        <ComboBox 
+                            id="tipoOcorrenciaComboBox" 
+                            placeholder="Tipo ocorrência"
+                            selectionChange="_onTipoOcorrenciaChange"
+                            items="{
+                                path: '/TipoOcorrenciaSet',
+                                filters: [
+                                    {
+                                        path: 'PosDif',
+                                        operator: 'NE',
+                                        value1: 'X'
+                                    }
+                                ],
+                                templateShareable: false
+                            }"
+                            valueStateText="Selecione um tipo de ocorrência"
+                            tooltip="Selecione o tipo de ocorrência">
+                            <items>
+                                <core:Item key="{Tipo}" text="{Descr}" xmlns:core="sap.ui.core" />
+                            </items>
+                        </ComboBox>
+                    </VBox>
+
+                    <!-- Separator Line -->
+                    <HBox class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+                        <core:HTML content="&lt;hr style='border: none; border-top: 1px solid #ccc; width: 100%; margin: 0;' /&gt;" xmlns:core="sap.ui.core" />
+                    </HBox>
+
+                    <!-- Descrição Field -->
+                    <VBox class="sapUiSmallMarginBottom">
+                        <Label text="Descrição ocorrência" class="sapUiTinyMarginBottom" />
+                        <TextArea 
+                            id="descricaoTextArea"
+                            placeholder="Descrição"
+                            rows="4"
+                            cols="30"
+                            valueStateText="Informe a descrição da ocorrência"
+                            tooltip="Descreva detalhadamente a ocorrência"
+                            liveChange="_onDescricaoChange"
+                            maxLength="500" />
+                    </VBox>
+
+                </VBox>
+
+                <!-- Action Buttons Section -->
+                <VBox class="buttonContainer sapUiLargeMarginTop" alignItems="Center">
+                    <HBox class="" justifyContent="Center" width="100%">
+                        <Button 
+                            id="ocorrenciaVoltarButton" 
+                            text="Voltar" 
+                            type="Emphasized" 
+                            press="onVoltarPress" 
+                            class="sapUiTinyMarginEnd" 
+                            icon="sap-icon://nav-back" 
+                            width="140px"
+                            tooltip="Voltar para tela anterior" />
+                        <Button 
+                            id="ocorrenciaConcluirButton" 
+                            text="Concluir" 
+                            type="Emphasized" 
+                            press="onConcluirPress" 
+                            class="" 
+                            icon="sap-icon://complete" 
+                            width="140px"
+                            tooltip="Concluir ocorrência" />
+                        <Button 
+                            id="ocorrenciaProximoButton" 
+                            text="Próximo" 
+                            type="Emphasized" 
+                            press="onProximoPress" 
+                            class="" 
+                            icon="sap-icon://arrow-right" 
+                            width="140px"
+                            tooltip="Próximo passo - Segregação"
+                            visible="false" />
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

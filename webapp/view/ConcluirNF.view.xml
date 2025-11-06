@@ -1,0 +1,33 @@
+<mvc:View controllerName="zui5recebfisic.controller.ConcluirNF"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="Finalizar recebimento NF" showNavButton="true" navButtonPress="onNavBack" class="concluirNFPage">
+        <content>
+            <VBox id="mainContent" class="concluirNFContainer" alignItems="Center" justifyContent="Center">
+                <Title text="Finalizar recebimento NF" 
+                       level="H2" 
+                       class="concluirNFTitle" />
+                
+                <VBox alignItems="Center" class="inputContainer">
+                    <Label text="Nota fiscal" class="inputLabel" />
+                    <Input id="nfInput" 
+                           placeholder="Informar NF recebimento"
+                           value="{concluirNF>/nf}"
+                           class="nfInput mobileInput"
+                           tooltip="Digite o número da Nota Fiscal"
+                           liveChange="onNFInputChange" />
+                </VBox>
+                
+                <VBox alignItems="Center" class="buttonContainer">
+                    <Button id="concluirButton" 
+                            text="Concluir" 
+                            type="Emphasized" 
+                            press="onConcluirPress"
+                            class="concluirButton primaryButton mobileActionButton"
+                            tooltip="Buscar identificadores da NF"
+                            width="170px" />
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
